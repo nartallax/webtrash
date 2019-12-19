@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "fabric/fabric",
+	"entryPointFunction": "fabricMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/fabric.js.compiled"
+}

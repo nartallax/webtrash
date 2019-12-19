@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "devserver",
+	"entryPointFunction": "devserverMain",
+	"environment": "node",
+	"project": "./tsconfig.json",
+	"outDir": "./js",
+	"outFile": "./js/devserver.js.compiled"
+}

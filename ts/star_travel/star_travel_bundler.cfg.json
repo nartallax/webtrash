@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "star_travel/star_travel",
+	"entryPointFunction": "starTravelMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/star_travel.js.compiled"
+}

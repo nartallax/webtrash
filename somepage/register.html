@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Регистрация</title>
+		<script>
+			var config = {
+				/* вот эти параметры должны указывать на userserver. 
+					все они строки. прописанные значения - "те же, на которых развернута страница"
+					pathPrefix здесь обязан совпадать со значением конфига pathPrefix в конфиге userserver
+				*/
+				userserver: {
+					host: location.hostname,
+					protocol: location.protocol,
+					//port: location.port,
+					port: 8090,
+					pathPrefix: "/userserver/"
+				}
+			}
+		</script>
+		<script>
+			function httpPost(url, data, callback){
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", url, true);
+				xhr.setRequestHeader("Content-Type", "application/json");
+
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState !== 4){
+						return;
+					}
+						
+					var code = xhr.status;
+					if((~~(code / 100)) !== 2){
+						alert("Shit happened: server responded with bad HTTP code (" + code + ")");
+						return;
+					}
+					
+					callback(xhr.responseText);
+				}
+				xhr.send(data);
+			}
+			
+			function callUserserver(endpoint, data, callback){
+				var c = config.userserver;
+				var baseUrl = c.protocol.replace(/:/g, "") + "://" + c.host + (c.port? ":" + c.port: "") + c.pathPrefix;
+				var bSlash = baseUrl.charAt(baseUrl.length - 1) === "/";
+				var eSlash = endpoint.charAt(endpoint.length - 1) === "/";
+				if(bSlash && eSlash){
+					baseUrl = baseUrl.replace(/\/$/, "");
+				} else if(!bSlash && !eSlash){
+					baseUrl += "/";
+				}
+
+				httpPost(baseUrl + endpoint, JSON.stringify(data), function(result){
+					try {
+						var parsed = JSON.parse(result);
+						if(!parsed.ok){
+							var err = parsed.error || {};
+							throw new Error("Server-side fail of type " + (err.type || "<unknown>") + ": " + (err.message || "<unknown>"));
+						}
+						callback(parsed.result);
+					} catch(e){
+						alert("Shit happens:\n" + e.stack);
+					}
+				});
+			}
+			
+			function callRegister(login, pass, email, callback){
+				callUserserver("user/create", {user:{email: email, login: login}, password: pass}, callback);
+			}
+			
+			var send = function(){
+				var login = document.querySelector("input[name='login']").value.trim();
+				var password = document.querySelector("input[name='password']").value.trim();
+				var email = document.querySelector("input[name='email']").value.trim();
+				
+				if(!login || !password || !email){
+					alert("Заполните все поля.");
+					return;
+				}
+				
+				callRegister(login, password, email, function(){
+					alert("Успех. Вам отправлено письмо.");
+				});
+			}
+		</script>
+		<style>
+			html, body {
+				padding: 0;
+				margin: 0;
+				border: 0;
+				width: 100%;
+				height: 100%;
+				display: block;
+				background: #222;
+				color: #fff;
+				text-shadow: 0px 0px 15px rgba(255,255,255,0.5);
+			}
+			
+			.page-root {
+				margin: auto;
+				width: 100%;
+				height: 100%;
+				max-width: 550px;
+				min-width: 300px;
+				
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			
+			.form-root {
+				margin: 15px;
+				font-family: Arial;
+				background: #444;
+				border-radius: 4px;
+				box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.25);
+			}
+			
+			h1 {
+				font-size: 32px;
+				text-transform: uppercase;
+				display: block;
+				padding: 15px;
+				margin: 0;
+				text-align: center;
+				font-weight: bold;
+			}
+			
+			.form-field {
+				text-align: center;
+				margin: 16px 16px;
+			}
+			
+			input, input:-webkit-autofill {
+				background: #222;
+				color: #fff;
+				text-shadow: 0px 0px 15px rgba(255,255,255,0.5);
+				border: 2px solid #222;
+				border-radius: 2px;
+				padding: 3px;
+				font-size: 20px;
+				display: block;
+				box-sizing: border-box;
+				width: 100%;
+			}
+			
+			input::placeholder {
+				color: #ccc;
+				text-shadow: 0px 0px 15px rgba(200,200,200,0.5);
+			}
+			
+			.form-submit-button {
+				background: #666;
+				box-shadow: 0px 0px 0px 0px rgba(196,196,196,0.25);
+				transition: 0.15s;
+				cursor: pointer;
+				border-radius: 5px;
+				margin: 15px;
+				padding: 15px;
+				font-size: 26px;
+				text-align: center;
+				user-select: none;
+				font-weight: bold;
+			}
+			
+			.form-submit-button:hover {
+				background: #888;
+				box-shadow: 0px 0px 20px 5px rgba(196,196,196,0.25);
+			}
+			
+			
+			.form-submit-button:active {
+				background: #aaa;
+				box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.25);
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="page-root">
+			<form class="form-root" autocomplete="off">
+				<input autocomplete="off" name="hidden" type="text" style="display:none;">
+				<h1>Регистрация</h1>
+				<div class="form-field">
+					<input type="text" name="login" placeholder="Логин" />
+				</div>
+				<div class="form-field">
+					<input type="text" name="password" placeholder="Пароль" />
+				</div>
+				<div class="form-field">
+					<input type="text" name="email" placeholder="Е-мейл" />
+				</div>
+				<div class="form-submit-button" onclick="send()">
+					Зарегистрироваться
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
