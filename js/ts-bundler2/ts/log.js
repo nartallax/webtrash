@@ -1,12 +1,12 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var logVerbosityLevel = 0;
+    let logVerbosityLevel = 0;
     function twoDig(x) { return (x > 9 ? "" : "0") + x; }
     function threeDig(x) { return x > 99 ? "" + x : "0" + twoDig(x); }
     function timeStr() {
-        var d = new Date();
-        return d.getFullYear() + "." + twoDig(d.getMonth() + 1) + "." + twoDig(d.getDate()) + " " + twoDig(d.getHours()) + ":" + twoDig(d.getMinutes()) + ":" + twoDig(d.getSeconds()) + ":" + threeDig(d.getMilliseconds());
+        let d = new Date();
+        return `${d.getFullYear()}.${twoDig(d.getMonth() + 1)}.${twoDig(d.getDate())} ${twoDig(d.getHours())}:${twoDig(d.getMinutes())}:${twoDig(d.getSeconds())}:${threeDig(d.getMilliseconds())}`;
     }
     function setLogVerbosityLevel(level) {
         logVerbosityLevel = level;

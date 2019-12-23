@@ -116,14 +116,15 @@ export class Devserver {
 		let escapedJs = js.replace(/<\/script/g, "</scri\\pt");
 		return `
 <!DOCTYPE html>
-<html style="width:100%;height:100%;margin:0;padding:0">
+<html>
 	<head>
+		<meta charset="utf-8">
 		<title>${this.opts.title || "Devpage"}</title>
 		<script>
 ${escapedJs}
 		</script>
 	</head>
-	<body style="width:100%;height:100%;margin:0;padding:0"></body>
+	<body></body>
 </html>
 		`
 	}

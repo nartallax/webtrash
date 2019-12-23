@@ -1,7 +1,7 @@
 define(["require", "exports", "path", "fs"], function (require, exports, path, fs) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var exists = function (x) {
+    let exists = (x) => {
         try {
             fs.statSync(x);
             return true;
@@ -11,8 +11,8 @@ define(["require", "exports", "path", "fs"], function (require, exports, path, f
         }
     };
     function findBundlerOrProjectFile(projectPath, relPath) {
-        var bundlerTsc = path.resolve(bundlerRoot, relPath);
-        var projectTsc = path.resolve(path.dirname(projectPath), relPath);
+        let bundlerTsc = path.resolve(bundlerRoot, relPath);
+        let projectTsc = path.resolve(path.dirname(projectPath), relPath);
         if (exists(bundlerTsc))
             return bundlerTsc;
         if (exists(projectTsc))
@@ -20,7 +20,7 @@ define(["require", "exports", "path", "fs"], function (require, exports, path, f
         return null;
     }
     exports.findBundlerOrProjectFile = findBundlerOrProjectFile;
-    var bundlerRoot = __dirname;
+    let bundlerRoot = __dirname;
     function setBundlerRoot(root) {
         bundlerRoot = root;
     }

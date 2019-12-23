@@ -138,7 +138,7 @@
         "signature": "38497cfd428300dcf9c017c5e9baaacf84adc3441e6d220af640de10991f8d7d"
       },
       "../ts-bundler2/ts/tsc.ts": {
-        "version": "3a6bcfdbb499aa6c1802c20e99f236cbb878a21f5ef830479ecc444956921d42",
+        "version": "2ea8f67f1679ffecabba6e52021fe4fbd02fa2f0c000894ef0b11217a0a63d5c",
         "signature": "ddf7d71f0e5048ab3b7b5244b87c1986f86232c94fe3b92cce7e7607be63c14c"
       },
       "../ts-bundler2/ts/async_fs.ts": {
@@ -186,11 +186,11 @@
         "signature": "963834ea83a4aa6fe6e5abfe81507138a659d18fce9a20b837a9505a8bb6d20c"
       },
       "../ts-bundler2/ts/bundler_main.ts": {
-        "version": "3d7f62ae14fe287f939f771a02a780b8e4fc95ad5e57a4586c392ea8472116f1",
+        "version": "d74c499d9afb2aa98f8aaaef0251a43aaf21ec78b7cd299e01acab4a61c2b94a",
         "signature": "28612729122c9816f989f43706f33ea977a5ba62e18cde3b4d77d7468b31f767"
       },
       "../ts/devserver.ts": {
-        "version": "d4e037568e78f368c5f790349037e14bd580bc040efd448534b4a0183f1cb207",
+        "version": "409272d3de0f2e73917dac495474eb37be874483ae37c48e15365a45eb0b8e69",
         "signature": "d0aed3d1a92b999cd2343fdc32143d2d08f3dfb46012b769fd8f58423d434637"
       },
       "../ts/fabric/fabric_sheet.ts": {
@@ -212,6 +212,38 @@
       "../ts/star_travel/star_travel.ts": {
         "version": "0afef88c56d275d9988d5390264dd8ee3c35d24b003d06e8cdb3244a26659751",
         "signature": "c24df22ff2bc07ac89649bd9068c5c7db0ec8001222e909fbcd99488492de0b4"
+      },
+      "../ts/worktable/css.ts": {
+        "version": "663633321ed3d281b8c742823d43061f7064a3f2a2afb8d60c55e10a7d667324",
+        "signature": "7bbe227d59eb85a417aeed6a515109fc09e1f0e2d90a67bd5da4b16f10d5972e"
+      },
+      "../ts/worktable/dragger.ts": {
+        "version": "0ea4df48b06ff4e968251311a7c824e1bb7589ef1c9460579a76aa85f9ffeaa1",
+        "signature": "689623fb7fbe020c76f07f82080b95e9776b70e682d482b9ccd36e84d5207b7a"
+      },
+      "../ts/worktable/two_dimension_array.ts": {
+        "version": "2cf3820410cfaaec98e6ca8f217285810940dffd51bbba44170a7b192bc75f98",
+        "signature": "ffb1d79138d57b626fe527aa45951b312d8d913da2dd7c579dad60e7284a9106"
+      },
+      "../ts/worktable/name.ts": {
+        "version": "4c7b33ce976d09e8182f0166755dfe6b92a10125628ef4d19a4b32efbe0d0fc2",
+        "signature": "af90d3882fd519692cb406c5a2fea0854a5617833be2748c841383bdd0e36773"
+      },
+      "../ts/worktable/icons.ts": {
+        "version": "4d4e72d4e931575b5f7e94b15e7f04a28bfe85bf18f76615d9699805accc58a0",
+        "signature": "72cecc5d58ebce184afe9e84256add852dd931ba9948c4b8ea88591fac0cc289"
+      },
+      "../ts/worktable/worktable.ts": {
+        "version": "4c3ba7bce44c9882e95461924f36f1fc5d337c70d81d56954815a627d07c22e6",
+        "signature": "41a22384f62961fc1a98f0bdfe1cba69151bdc8f1ccebd77f03b27386691619a"
+      },
+      "../ts/worktable/element.ts": {
+        "version": "75f11b61ae3d478b1ef6116ae0af0ead2da911c71830f30d0a36174e33d5a438",
+        "signature": "6e4489686afaec16e59334b84a35b31d2e6253a1496fbe7c3c4e7f0b2a271f5a"
+      },
+      "../ts/worktable/worktable_main.ts": {
+        "version": "bed86c1c2a3e5dcc557e7c6018b1a906d7487e0928fee0e0b84beb2e2baf930c",
+        "signature": "dc781cd2cf24b887937ea31a94b6f1b08beb1ae34ae323d1a59efc2681411941"
       },
       "../node_modules/@types/node/globals.d.ts": {
         "version": "6cf62fbc792aa81fa62f99dab5cc692c5315ecd5da09dd35f1ccc82778c4d5bc",
@@ -423,7 +455,7 @@
       "emitBOM": false,
       "outDir": "./",
       "module": 2,
-      "target": 1,
+      "target": 5,
       "strict": true,
       "allowUnreachableCode": false,
       "allowUnusedLabels": false,
@@ -441,6 +473,8 @@
       "importHelpers": true,
       "noEmitHelpers": true,
       "incremental": true,
+      "watch": true,
+      "listEmittedFiles": true,
       "configFilePath": "../tsconfig.json"
     },
     "referencedMap": {
@@ -805,6 +839,62 @@
       ],
       "../ts/star_travel/star_travel.ts": [
         "../ts/star_travel/star_travel_controller.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/css.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/dragger.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/two_dimension_array.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/name.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/icons.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/worktable.ts": [
+        "../ts/worktable/two_dimension_array.ts",
+        "../ts/worktable/element.ts",
+        "../ts/worktable/name.ts",
+        "../ts/worktable/icons.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/element.ts": [
+        "../ts/worktable/worktable.ts",
+        "../ts/worktable/dragger.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../ts/worktable/worktable_main.ts": [
+        "../ts/worktable/css.ts",
+        "../ts/worktable/worktable.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -1377,6 +1467,9 @@
       "../ts-bundler2/ts/stdin_json_interface.ts": [
         "../ts-bundler2/ts/event.ts"
       ],
+      "../ts/worktable/element.ts": [
+        "../ts/worktable/worktable.ts"
+      ],
       "../node_modules/@types/node/globals.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1770,6 +1863,7 @@
       "../ts-bundler2/ts/cli.ts",
       "../ts-bundler2/ts/event.ts",
       "../ts-bundler2/ts/bundler_or_project_file.ts",
+      "../ts-bundler2/ts/tsc.ts",
       "../ts-bundler2/ts/async_fs.ts",
       "../ts-bundler2/ts/eval_module.ts",
       "../ts-bundler2/ts/module_name.ts",
@@ -1788,6 +1882,13 @@
       "../ts/star_travel/raf.ts",
       "../ts/star_travel/star_travel_controller.ts",
       "../ts/star_travel/star_travel.ts",
+      "../ts/worktable/dragger.ts",
+      "../ts/worktable/two_dimension_array.ts",
+      "../ts/worktable/name.ts",
+      "../ts/worktable/icons.ts",
+      "../ts/worktable/worktable.ts",
+      "../ts/worktable/element.ts",
+      "../ts/worktable/worktable_main.ts",
       "../node_modules/@types/node/globals.d.ts",
       "../node_modules/@types/node/assert.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
@@ -1833,7 +1934,7 @@
       "../node_modules/@types/node/ts3.2/util.d.ts",
       "../node_modules/@types/node/ts3.2/globals.d.ts",
       "../node_modules/@types/node/ts3.2/index.d.ts",
-      "../ts-bundler2/ts/tsc.ts"
+      "../ts/worktable/css.ts"
     ]
   },
   "version": "3.7.2"

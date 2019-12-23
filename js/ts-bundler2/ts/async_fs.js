@@ -2,8 +2,8 @@ define(["require", "exports", "fs"], function (require, exports, fs) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function fsStat(path, opts) {
-        return new Promise(function (ok, bad) {
-            var cb = function (err, res) {
+        return new Promise((ok, bad) => {
+            let cb = (err, res) => {
                 if (err) {
                     bad(err);
                 }
@@ -21,9 +21,9 @@ define(["require", "exports", "fs"], function (require, exports, fs) {
     }
     exports.fsStat = fsStat;
     function fsReadFile(path, options) {
-        return new Promise(function (ok, bad) {
+        return new Promise((ok, bad) => {
             try {
-                fs.readFile(path, options, function (err, res) {
+                fs.readFile(path, options, (err, res) => {
                     err ? bad(err) : ok(res);
                 });
             }
@@ -34,9 +34,9 @@ define(["require", "exports", "fs"], function (require, exports, fs) {
     }
     exports.fsReadFile = fsReadFile;
     function fsUnlink(path) {
-        return new Promise(function (ok, bad) {
+        return new Promise((ok, bad) => {
             try {
-                fs.unlink(path, function (err) { return err ? bad(err) : ok(); });
+                fs.unlink(path, err => err ? bad(err) : ok());
             }
             catch (e) {
                 bad(e);
@@ -45,9 +45,9 @@ define(["require", "exports", "fs"], function (require, exports, fs) {
     }
     exports.fsUnlink = fsUnlink;
     function fsWrite(path, data) {
-        return new Promise(function (ok, bad) {
+        return new Promise((ok, bad) => {
             try {
-                fs.writeFile(path, data, function (err) { return err ? bad(err) : ok(); });
+                fs.writeFile(path, data, err => err ? bad(err) : ok());
             }
             catch (e) {
                 bad(e);

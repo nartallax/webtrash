@@ -2,20 +2,20 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function raf(handler) {
-        var lastInvokeTime = Date.now();
-        var stopped = false;
-        var wrappedHandler = function () {
+        let lastInvokeTime = Date.now();
+        let stopped = false;
+        let wrappedHandler = () => {
             if (stopped) {
                 return;
             }
             requestAnimationFrame(wrappedHandler);
-            var newNow = Date.now();
-            var diff = newNow - lastInvokeTime;
+            let newNow = Date.now();
+            let diff = newNow - lastInvokeTime;
             lastInvokeTime = newNow;
             handler(diff);
         };
         requestAnimationFrame(wrappedHandler);
-        return function () { return stopped = true; };
+        return () => stopped = true;
     }
     exports.raf = raf;
 });

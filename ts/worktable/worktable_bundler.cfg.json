@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "worktable/worktable_main",
+	"entryPointFunction": "worktableMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/worktable.js.compiled"
+}

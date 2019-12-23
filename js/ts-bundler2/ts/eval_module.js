@@ -2,8 +2,8 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function evalModule(name, code) {
-        var dependencies = null;
-        var define = function (deps) {
+        let dependencies = null;
+        let define = (deps) => {
             if (dependencies)
                 throw new Error("Double define() call from definition of module " + name);
             dependencies = deps;
@@ -12,7 +12,7 @@ define(["require", "exports"], function (require, exports) {
         eval(code);
         if (!dependencies)
             throw new Error("No define() call from definition of module " + name);
-        return { dependencies: dependencies };
+        return { dependencies };
     }
     exports.evalModule = evalModule;
 });

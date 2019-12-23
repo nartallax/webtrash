@@ -2,7 +2,7 @@ define(["require", "exports", "uglify-js", "log"], function (require, exports, U
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function minifyJavascript(name, code) {
-        var result = UglifyJS.minify(code, {
+        let result = UglifyJS.minify(code, {
             compress: true,
             ie8: true,
             keep_fnames: true,
@@ -16,7 +16,7 @@ define(["require", "exports", "uglify-js", "log"], function (require, exports, U
                 preserve_line: false
             }
         });
-        result.warnings && result.warnings.forEach(function (warning) {
+        result.warnings && result.warnings.forEach(warning => {
             log_1.logWarn("Minifier warning for " + name + ": " + warning);
         });
         if (result.error) {
