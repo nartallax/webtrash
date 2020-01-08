@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "waves/waves_main",
+	"entryPointFunction": "wavesMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/waves.js.compiled"
+}

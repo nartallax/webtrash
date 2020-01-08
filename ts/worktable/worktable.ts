@@ -1,4 +1,4 @@
-import {TwoDimensionArray} from "./two_dimension_array";
+import {TwoDimensionArray} from "../commons/two_dimension_array";
 import {WorktableElement, EmptyWorktableElement, IconWorktableElement} from "./element";
 import {randomNames} from "./name";
 import {randomIconUrls} from "./icons";

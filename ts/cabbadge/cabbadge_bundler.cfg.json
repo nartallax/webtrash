@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "cabbadge/cabbadge_main",
+	"entryPointFunction": "cabbadgeMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/cabbadge.js.compiled"
+}

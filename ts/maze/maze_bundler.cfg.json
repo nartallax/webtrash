@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "maze/maze_main",
+	"entryPointFunction": "mazeMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/maze.js.compiled"
+}
