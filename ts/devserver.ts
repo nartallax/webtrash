@@ -17,6 +17,7 @@ type HtmlFilePath = {
 export type DevserverOpts = {
 	port?: number;
 	title?: string;
+	nonFancy?: boolean;
 } & (BundlerConfigPath | HtmlFilePath)
 
 /** HTTP-сервер для упрощения разработки */
@@ -54,7 +55,7 @@ export class Devserver {
 	private async runBundlerMode(bundlerConfigPath: string){
 		let devtool = await runBundlerDevmode({
 			configPath: bundlerConfigPath,
-			fancy: true,
+			fancy: !this.opts.nonFancy,
 			verbose: true,
 			useStdio: false
 		}, "./ts-bundler2/");
@@ -83,7 +84,10 @@ export class Devserver {
 	private async handleRequest(req: http.IncomingMessage, res: http.ServerResponse, devtool: () => Promise<boolean>, outputPath: string){
 		try {
 			let reqUrl = url.parse(req.url || "");
-			if(reqUrl.path !== "/" && reqUrl.path !== ""){
+
+			const bundlePath = "/bundle.js"
+			
+			if(reqUrl.path !== "/" && reqUrl.path !== "" && reqUrl.path !== bundlePath){
 				res.statusCode = 404;
 				res.end("404 Not Found")
 				return;
@@ -98,8 +102,8 @@ export class Devserver {
 
 			let js = (await fsReadFile(outputPath)).toString("utf8");
 			
-			let resp = this.assembleHtml(js);
-
+			let resp = reqUrl.path === bundlePath? js: this.assembleHtml(js);
+			
 			res.statusCode = 200;
 			res.end(resp);
 			return;
@@ -136,6 +140,7 @@ export async function devserverMain(){
 		helpHeader: "HTTP webserver that aids the development process.",
 		definition: {
 			bundlerConfig: CLI.str({keys: ["-c", "--config"], definition: "Path to bundler config that this tool will use.", default: ""}),
+			notFancy: CLI.bool({keys: ["--not-fancy"], definition: "Makes compiler produce non-fancy code for older ECMAscript versions."}),
 			filePath: CLI.str({keys: ["-f", "--file"], definition: "Path to a single file this server will return on any request", default: ""}),
 			help: CLI.help({ keys: ["-h", "--h", "-help", "--help"], definition: "Shows list of commands." })
 		}
@@ -147,6 +152,7 @@ export async function devserverMain(){
 	} else {
 		args = { bundlerConfigPath: cliArgs.bundlerConfig }
 	}
+	args.nonFancy = cliArgs.notFancy;
 
 	let server = new Devserver(args);
 	let url = await server.run();

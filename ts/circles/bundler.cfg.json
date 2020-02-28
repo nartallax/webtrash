@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "circles/circles_main",
+	"entryPointFunction": "circlesMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/circles.js.compiled"
+}

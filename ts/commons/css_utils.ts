@@ -1,4 +1,4 @@
-function useCss(css: string){
+export function useCss(css: string){
 	let style = document.createElement("style");;
 	style.textContent = css;
 	document.head.appendChild(style);
