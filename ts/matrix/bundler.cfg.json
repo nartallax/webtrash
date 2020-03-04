@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "matrix/matrix_main",
+	"entryPointFunction": "matrixMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/matrix.js.compiled"
+}

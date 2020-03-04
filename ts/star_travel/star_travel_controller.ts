@@ -1,4 +1,4 @@
-import {raf} from "./raf";
+import {raf} from "../commons/raf";
 
 export interface StarTravelOpts {
 	width: number;
