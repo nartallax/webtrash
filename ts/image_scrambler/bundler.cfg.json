@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "image_scrambler/image_scrambler_main",
+	"entryPointFunction": "imageScramblerMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/imageScrambler.js.compiled"
+}

@@ -20,7 +20,10 @@ export type DevserverOpts = {
 	nonFancy?: boolean;
 } & (BundlerConfigPath | HtmlFilePath)
 
-/** HTTP-сервер для упрощения разработки */
+/** HTTP-сервер для упрощения разработки
+ * НЕ безопасен, не поддерживает огромное количество разнообразной херни, и так далее
+ * просто небольшой вебсервер для раздачи контента
+ */
 export class Devserver {
 
 	private readonly opts: DevserverOpts;
@@ -86,6 +89,23 @@ export class Devserver {
 			let reqUrl = url.parse(req.url || "");
 
 			const bundlePath = "/bundle.js"
+			let extMatch = (reqUrl.path || "").match(/\.([^\.]+)$/);
+			let ext = !extMatch? null: extMatch[1].toLowerCase();
+			let allowedExts = new Map([
+				["png", "image/png"],
+				["jpg", "image/jpeg"],
+				["jpeg", "image/jpeg"]
+			]);
+			let mime = !ext? null: allowedExts.get(ext)
+			if(mime){
+				// вот это капец как небезопасно
+				// но т.к. это девсервер, тут можно
+				let resPath = path.resolve("." + reqUrl.path || "");
+				let resp = (await fsReadFile(resPath));
+				res.setHeader("Content-Type", mime);
+				res.statusCode = 200;
+				res.end(resp);
+			}
 			
 			if(reqUrl.path !== "/" && reqUrl.path !== "" && reqUrl.path !== bundlePath){
 				res.statusCode = 404;

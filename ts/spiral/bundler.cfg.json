@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "spiral/spiral_main",
+	"entryPointFunction": "spiralMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/spiral.js.compiled"
+}
