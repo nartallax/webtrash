@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "popup/popup_main",
+	"entryPointFunction": "popupMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/popup.js.compiled"
+}
