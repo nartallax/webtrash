@@ -1,0 +1,8 @@
+{
+	"entryPointModule": "graphics/graphics_main",
+	"entryPointFunction": "graphicsMain",
+	"environment": "browser",
+	"project": "../../tsconfig.json",
+	"outDir": "../../js",
+	"outFile": "../../js/graphics.js.compiled"
+}

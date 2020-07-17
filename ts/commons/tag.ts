@@ -1,6 +1,6 @@
 // имя свойства HTMLElement.style, в которое нельзя писать
 // я думал как-то автоматически их выводить, но не получилось. ну и ладно, их всего два.
-type NonWritableCssPropertyName = "length" | "parentRule"
+type NonWritableCssPropertyName = "length" | "parentRule" | "getPropertyPriority" | "getPropertyValue" | "item" | "removeProperty" | "setProperty";
 
 // имя свойства HTMLElement.style, в которое можно писать
 // это имена всех его свойств минус те имена, в которые писать нельзя
@@ -57,7 +57,7 @@ export function tag<K extends keyof HTMLElementTagNameMap = "div">(opts: TagOpti
 		} else {
 			for(let stylePropName in opts.style){
 				let name = stylePropName as WritableCssPropertyName;
-				el.style[name] = opts.style[name];
+				el.style[name] = opts.style[name] as string;
 			}
 		}
 	}

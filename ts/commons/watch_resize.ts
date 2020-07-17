@@ -3,7 +3,7 @@
  * может вызвать проблемы, связанные с css-свойством position у элемента
  * all credit goes to https://github.com/marcj/css-element-queries/blob/master/src/ResizeSensor.js
  */
-export function watchResize(el: HTMLElement, handler: () => any): () => void {
+export function watchResize(el: HTMLElement | SVGSVGElement, handler: () => any): () => void {
 	// RAF здесь используется для предотвращения спама событиями
 	// с его помощью мы удостовериваемся, что происходит не более одного события за кадр
 	var requestAnimationFrame = window.requestAnimationFrame || ((cb: () => any) => window.setTimeout(cb, ~~(1000 / 60)));
@@ -36,8 +36,8 @@ export function watchResize(el: HTMLElement, handler: () => any): () => void {
 		el.style.position = 'relative';
 
 	var dirty: boolean, rafId: number, newWidth: number, newHeight: number;
-	var lastWidth = el.offsetWidth;
-	var lastHeight = el.offsetHeight;
+	var lastWidth = el.clientWidth;
+	var lastHeight = el.clientHeight;
 
 	var reset = () => {
 		expandChild.style.width = '100000px';
@@ -53,8 +53,8 @@ export function watchResize(el: HTMLElement, handler: () => any): () => void {
 	reset();
 
 	var onScroll = () => {
-		newWidth = el.offsetWidth;
-		newHeight = el.offsetHeight;
+		newWidth = el.clientWidth;
+		newHeight = el.clientHeight;
 		dirty = newWidth != lastWidth || newHeight != lastHeight;
 
 		if(dirty && !rafId && handler)

@@ -2,6 +2,7 @@ import {useCss} from "./css_utils";
 
 /** Дергать за handler каждый раз, когда node становится частью DOM (т.е. на вставке его или его ancestor в DOM)
  Возвращает функцию dispose. Можно не вызывать, handler будет забыт в момент уничтожения node
+ на SVG-элементах НЕ РАБОТАЕТ, можно даже не пробовать
  */
 export function watchNodeInserted(node: HTMLElement, handler: () => void): () => void {
 	const animationName = "nodeInserted";
@@ -16,11 +17,6 @@ export function watchNodeInserted(node: HTMLElement, handler: () => void): () =>
 		if(e.animationName === animationName && e.target instanceof HTMLElement && _allNodeInsertedHandlers.has(e.target))
 			(_allNodeInsertedHandlers.get(e.target) as (() => void))();
 		}, false);
-	}
-
-	if(!node || !handler){
-		console.warn("Аргумент " + [node? "": "node", handler ? "" : "handler"].filter(_ => !!_).join(", и ") + " пуст.");
-		return () => { };
 	}
 
 	if(_allNodeInsertedHandlers.has(node)) {
@@ -38,4 +34,4 @@ export function watchNodeInserted(node: HTMLElement, handler: () => void): () =>
 	}
 }
 let _nodeInsertedWatcherAdded = false;
-let _allNodeInsertedHandlers = new WeakMap<HTMLElement, () => void>();
+let _allNodeInsertedHandlers = new WeakMap<HTMLElement | SVGSVGElement, () => void>();
