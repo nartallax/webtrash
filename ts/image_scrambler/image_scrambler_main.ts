@@ -58,7 +58,11 @@ export async function imageScramblerMain(){
 		pauseDuration: 200000,
 		animationDuration: 10000,
 		towersCount: 10,
-		maxTowerHeight: 0.5 // в единицах, условно равных размеру экрана
+		maxTowerHeight: 0.5, // в единицах, условно равных размеру экрана
+		minTowerXSize: 0.05,
+		minTowerYSize: 0.05,
+		maxTowerXSize: 0.3,
+		maxTowerYSize: 0.3
 	});
 	document.body.appendChild(scrambler.root);
 	scrambler.start();

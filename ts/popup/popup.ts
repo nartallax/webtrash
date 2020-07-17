@@ -239,7 +239,7 @@ export class Popup {
 		// а в случае не-фулскринового - ей задается высота
 		if(this.opts.fullscreen){
 			this.root.style.left = this.root.style.top = "0px";
-			this.root.style.bottom = this.root.style.right = "0px";
+			this.root.style.bottom = this.root.style.right = "0px";	
 			this.root.style.width = this.root.style.height = "";
 			this.content.style.maxHeight = "";
 			this.content.style.top = this.headerHeight + "px";
